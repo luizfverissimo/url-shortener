@@ -1,12 +1,23 @@
 {
-  "name": "server",
+  "name": "WDNA-url-shortener-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/server.js",
+    "knex:migrate": "npx knex --knexfile knexfile.js migrate:latest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "knex": "^0.21.6",
+    "moment": "^2.29.0",
+    "nodemon": "^2.0.4",
+    "shortid": "^2.2.15",
+    "sqlite3": "^5.0.0"
+  }
 }

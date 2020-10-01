@@ -41,34 +41,37 @@ routes.get('/:url_short', async (req, res) => {
   const urlMount = `http://localhost:3333/${url_short}`
 
   try {
-    const [urlObj] = await db('urls')
+    const urlInfosArray = await trx('urls')
       .select('*')
       .where('url_short', '=', urlMount)
 
-      console.log(urlObj)
-    if(!urlObj) {
-      return res.status(404).json({ error: 'Link não existe' })
+    if (urlInfosArray.length === 0) {
+      await trx.commit()
+
+      return res.status(404).json({ error: 'Link não foi encurtado.' })
     }
+
+    const { url_origin, url_short, expire_date } = urlInfosArray[0]
 
     const now = moment().format('YYYY-MM-DD')
-    const dayDifference = moment(urlObj.expire_date).diff(now, 'days')
+    const dataDiference = moment(expire_date).diff(now, 'days')
 
-    if(dayDifference > 0) {
-      return res.redirect(301, `${urlObj.url_origin}`)
-    } else {
-      try {
-        await trx('urls').where('url_short', '=', urlMount).del()
+    //está dentro da validade
+    if (dataDiference >= 0) {
+      await trx.commit()
+      return res.redirect(`${url_origin}`)
+    }
 
-        trx.commit()
+    //está fora da validade
+    if (dataDiference < 0) {
+      await trx('urls').where('url_short', '=', url_short).del()
 
-        res.status(404).json({ error: 'Link não é mais válido' })
-      } catch (err) {
-        console.log(err)
-        res.status(400).json({ error: 'Erro no banco de dados' })
-      }
+      await trx.commit()
+
+      return res.status(404).json({ error: 'Link não é mais válido.' })
     }
   } catch (err) {
-    return res.status(400).json({ error: err.message })
+    return res.status(400).json(err)
   }
 })
 

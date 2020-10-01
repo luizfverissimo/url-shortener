@@ -5,10 +5,10 @@ const moment = require('moment')
 
 const routes = express.Router()
 
-const trx = await db.transaction()
-
 routes.post('/shortener', async (req, res) => {
   const { url_origin, date } = req.body
+
+  const trx = await db.transaction()
 
   const urlShortCode = shortid.generate(url_origin)
   const url_short = `http://localhost:3333/${urlShortCode}`
@@ -35,6 +35,8 @@ routes.post('/shortener', async (req, res) => {
 
 routes.get('/:url_short', async (req, res) => {
   const { url_short } = await req.params
+
+  const trx = await db.transaction()
 
   const urlMount = `http://localhost:3333/${url_short}`
 

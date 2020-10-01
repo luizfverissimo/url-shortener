@@ -18,7 +18,7 @@ routes.post('/shortener', async (req, res) => {
   const urlShortCode = shortid.generate(url_origin)
   const url_short = `http://localhost:3333/${urlShortCode}`
 
-  //adiciona um dia para a data de validade
+  //adiciona um dia como data de validade do link
   const expire_date = moment(date, 'YYYY-MM-DD')
     .add(1, 'days')
     .format('YYYY-MM-DD')
@@ -60,10 +60,10 @@ routes.get('/:url_short', async (req, res) => {
     }
 
     const { url_origin, url_short, expire_date } = urlInfosArray[0]
-
-    //pega a data de hoje
+    
+    //pega o dia de hoje
     const now = moment().format('YYYY-MM-DD')
-    //compara com a data de validade, se for maior que 0, ainda está na validade, se for menor que 0, não está mais na validade
+    //compara com a data de validade se for 0 ou 1, está dentro, se for um valor negativo, não está na validade
     const dataDiference = moment(expire_date).diff(now, 'days')
 
     //está dentro da validade
@@ -74,7 +74,7 @@ routes.get('/:url_short', async (req, res) => {
 
     //está fora da validade
     if (dataDiference < 0) {
-      //deleta do banco de dados se não estiver mais na validade
+      //caso não esteja válido, já é retirado da base de dados.
       await trx('urls').where('url_short', '=', url_short).del()
 
       await trx.commit()

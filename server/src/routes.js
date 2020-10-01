@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const shortid = require('shortid')
 const db = require('./database/connections')
 const moment = require('moment')
@@ -9,6 +10,10 @@ routes.post('/shortener', async (req, res) => {
   const { url_origin, date } = req.body
 
   const trx = await db.transaction()
+
+  shortid.characters(
+    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@'
+  ) //o shortId precisa de 64 caracteres únicos, por isso adicionei $ e @
 
   const urlShortCode = shortid.generate(url_origin)
   const url_short = `http://localhost:3333/${urlShortCode}`
@@ -48,7 +53,9 @@ routes.get('/:url_short', async (req, res) => {
     if (urlInfosArray.length === 0) {
       await trx.commit()
 
-      return res.status(404).json({ error: 'Link não foi encurtado.' })
+      return res
+        .status(404)
+        .sendFile(path.resolve(__dirname, 'pages', '404-error.html'))
     }
 
     const { url_origin, url_short, expire_date } = urlInfosArray[0]
@@ -68,7 +75,9 @@ routes.get('/:url_short', async (req, res) => {
 
       await trx.commit()
 
-      return res.status(404).json({ error: 'Link não é mais válido.' })
+      return res
+        .status(404)
+        .sendFile(path.resolve(__dirname, 'pages', '404-error.html'))
     }
   } catch (err) {
     return res.status(400).json(err)

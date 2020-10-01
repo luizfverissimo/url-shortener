@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Erro 404 - Página não encontrada</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+
+      #root {
+        font-family: 'Open Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        background: rgb(247, 244, 244);
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .content h1 {
+        font-size: 64px;
+      }
+
+      .button-container {
+        margin-top: 32px;
+      }
+
+      .button-container a {
+        padding: 16px;
+        background-color: #2c3e50;
+        color: white;
+        text-decoration: none;
+        font: 400 18px 'Open Sans';
+        border: 0;
+        border-radius: 0.8rem;
+        cursor: pointer;
+        transition: all 0.5s;
+        transition-property: background-color, box-shadow;
+      }
+
+      .button-container a:hover {
+        background: #67a5a5;
+        box-shadow: 3px 3px 5px -1px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="content">
+        <p>Encurtador de URL</p>
+        <h1>Erro 404</h1>
+        <p>O link não existe ou já expirou!</p>
+      </div>
+      <div class="button-container">
+        <a href="http://localhost:8080/">Clique aqui para encurtar a sua URL</a>
+        <!-- O link pode não funcionar se a aplicação VUE estiver em outra porta. -->
+      </div>
+    </div>
+  </body>
+</html>

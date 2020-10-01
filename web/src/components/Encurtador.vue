@@ -9,6 +9,7 @@
         placeholder="Digite sua URL aqui"
         v-model="urlInput"
       />
+      <p>{{urlError}}</p>
       <button type="button" v-on:click="shortUrlRequest">Encurtar!</button>
       <div class="result">
         <p>{{ urlShort }}</p>
@@ -27,16 +28,30 @@ export default {
   data() {
     return {
       urlInput: '',
-      urlShort: ''
+      urlShort: '',
+      urlError: ''
     }
   },
   methods: {
     async shortUrlRequest() {
+      this.urlError = ''
+      //adquire a data de hoje
       const date = moment().format('YYYY-MM-DD')
-      const urlOrigin = this.urlInput
+      let urlOrigin = this.urlInput
 
-      console.log(date, urlOrigin)
+      const regExUrlValidation = /[(http(s)?)://(www.)?a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/ig
+      //verifica se a url é válida
+      if(!regExUrlValidation.test(urlOrigin)){
+        this.urlError = 'Adicione uma URL válida.'
+        console.log('inválida')
+        return
+      }
+      //verifica se a url possui http:// ou https://, caso não, adiciona
+      if(!/(http(s?)):\/\//i.test(urlOrigin)) {
+        urlOrigin = `http://${urlOrigin}`
+      }
 
+      //faz a requisição e captura o resultado
       const { data } = await api.post('/shortener', {
         url_origin: urlOrigin,
         date

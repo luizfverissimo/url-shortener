@@ -22,7 +22,7 @@ Depois disso, instale as dependências do Front-end e do Back-end:
 ```
 ## Executando a aplicação
 
-Primeiro acesse a pasta do server e execute o seguinte comando:
+Primeiro acesse a pasta **server** e execute o seguinte comando:
 ```sh
   npm start
 ```
@@ -36,7 +36,7 @@ e rode o comando:
   npm run knex:migrate
 ```
 
-Agora é só executar o front-end na past web:
+Agora é só executar o front-end na pasta **web**:
 ```sh
   npm run serve
   ```

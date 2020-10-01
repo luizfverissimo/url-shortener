@@ -2,7 +2,7 @@
 
 Projeto fullstack criado para o code-challenge da WDNA.
 
-Back-end criado com *Node.js + Express*, utilizando base de dados *SQLite3 e Knex* para a manipulação, manipulação de datas fou utilizado o *Moment.js* e *shortId* para encurtamento das URLs.
+Back-end criado com *Node.js + Express*, utilizando base de dados *SQLite3 e Knex* para a manipulação, para a manipulação de datas foi utilizado o *Moment.js* e *shortId* para encurtamento das URLs.
 
 Front-end foi criado com *Vue.js*.
 
@@ -22,7 +22,7 @@ Depois disso, instale as dependências do Front-end e do Back-end:
 ```
 ## Executando a aplicação
 
-Primeiro acesse a pasta do server e execute o seguinte comando:
+Primeiro acesse a pasta do **server** e execute o seguinte comando:
 ```sh
   npm start
 ```
@@ -36,7 +36,7 @@ e rode o comando:
   npm run knex:migrate
 ```
 
-Agora é só executar o front-end na past web:
+Agora é só executar o front-end na pasta **web**:
 ```sh
   npm run serve
   ```

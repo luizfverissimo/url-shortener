@@ -2,7 +2,7 @@
 
 Projeto fullstack criado para o code-challenge da WDNA.
 
-Back-end criado com *Node.js + Express*, utilizando base de dados *SQLite3 e Knex* para a manipulação, manipulação de datas fou utilizado o *Moment.js* e *shortId* para encurtamento das URLs.
+Back-end criado com *Node.js + Express*, utilizando base de dados *SQLite3 e Knex* para a manipulação, manipulação de datas foi utilizado o *Moment.js* e *shortId* para encurtamento das URLs.
 
 Front-end foi criado com *Vue.js*.
 

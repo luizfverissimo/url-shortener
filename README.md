@@ -1,6 +1,6 @@
-# WDNA Encurtador de Url
+# Encurtador de Links
 
-Projeto fullstack criado para o code-challenge da WDNA.
+Projeto fullstack criado para um code-challenge.
 
 Back-end criado com *Node.js + Express*, utilizando base de dados *SQLite3 e Knex* para a manipulação, manipulação de datas foi utilizado o *Moment.js* e *shortId* para encurtamento das URLs.
 

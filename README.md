@@ -1,4 +1,4 @@
-# Encurtador de Links
+# Encurtador de URL
 
 Projeto fullstack criado para um code-challenge.
 

@@ -12,7 +12,7 @@ Front-end foi criado com *Vue.js*.
 
 Você precisará ter o [NodeJS](https://nodejs.org) instalado na sua máquina, e, após isso, clonar este repositório:
 ```sh
-  git clone https://github.com/luizfverissimo/WDNA-url-shortener.git
+  git clone https://github.com/luizfverissimo/url-shortener.git
 ```
 
 Depois disso, instale as dependências do Front-end e do Back-end:

@@ -29,7 +29,7 @@ Primeiro acesse a pasta **server** e execute o seguinte comando:
 
 Caso queira recriar o banco de dados, delete o arquivo,
 ```sh
-  WDNA-url-shortener/server/database/database.sqlite3
+  url-shortener/server/database/database.sqlite3
 ```
 e rode o comando:
 ```sh
